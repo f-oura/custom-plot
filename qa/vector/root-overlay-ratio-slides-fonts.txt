@@ -1,0 +1,3 @@
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+BNHYSB+Times-Roman                   Type 1C           WinAnsi          yes yes yes      5  0

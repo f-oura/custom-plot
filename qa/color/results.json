@@ -1,0 +1,29 @@
+{
+  "viridis_runtime_max_rgb_error": 2.98000000231724e-08,
+  "Blues_runtime_max_rgb_error": 2.98000000231724e-08,
+  "YlGnBu_runtime_max_rgb_error": 2.9700000014898364e-08,
+  "RdBu_r_runtime_max_rgb_error": 2.9600000006624327e-08,
+  "synthetic_data_unchanged": true,
+  "classic-color-comparison.pdf": {
+    "pages": 4,
+    "images": 0,
+    "all_fonts_embedded_subset_unicode": true,
+    "external_font_render_pixel_max_difference": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "root-vector-samples.pdf": {
+    "pages": 4,
+    "images": 0,
+    "all_fonts_embedded_subset_unicode": true,
+    "external_font_render_pixel_max_difference": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

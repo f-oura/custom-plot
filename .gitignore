@@ -1,0 +1,10 @@
+__pycache__/
+qa/cache/
+qa/comparison-*.png
+qa/noexternal-*.png
+qa/rgb-*.png
+.DS_Store
+
+qa/color/render/
+qa/color/isolated/
+qa/color/*/

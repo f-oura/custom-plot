@@ -1,0 +1,2 @@
+paper counts: range 0-8, y0-210, ratio0-5; density0/1-60; signed -30..30; zero bins261
+slides counts: range 0-8, y0-210, ratio0-5; density0/1-60; signed -30..30; zero bins261

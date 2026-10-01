@@ -1,0 +1,35 @@
+#include "PlotStyle.h"
+#include <TCanvas.h>
+#include <TStyle.h>
+#include <TH2D.h>
+#include <TGraphErrors.h>
+#include <TLegend.h>
+#include <TLine.h>
+#include <TLatex.h>
+#include <TColor.h>
+#include <TExec.h>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <cmath>
+std::vector<std::vector<double>> csv(const char* path){std::ifstream f(path);std::string s;std::vector<std::vector<double>> v;while(std::getline(f,s)){std::stringstream ss(s);std::string a;std::vector<double> r;while(std::getline(ss,a,','))r.push_back(std::stod(a));v.push_back(r);}if(v.empty())throw std::runtime_error(path);return v;}
+TGraphErrors* graph(const std::vector<std::vector<double>>&v,int mode,int color,int marker,int line){auto gr=new TGraphErrors();int j=0;for(auto&r:v){double y=r[1],e=sqrt(y);if(mode==1&&y<=0)continue;if(mode==2){y=r[2];e=sqrt(y);}if(mode==3){if(r[2]<=0)continue;y=r[1]/r[2];e=y*sqrt(1/std::max(1.,r[1])+1/r[2]);}if(mode==4){y=r[1]-r[3];e=sqrt(r[1]+r[3]);}if(mode==5){y=r[4]-r[3];e=0;}if(mode==6){y=(r[1]-r[4])/sqrt(r[4]);e=0;}gr->SetPoint(j,r[0],y);gr->SetPointError(j++,0,e);}gr->SetLineColor(color);gr->SetMarkerColor(color);gr->SetMarkerStyle(marker);gr->SetMarkerSize(.55);gr->SetLineStyle(line);gr->SetLineWidth(rootLineWidth);return gr;}
+void frame(const char*n,const char*y,double lo,double hi){auto h=gPad->DrawFrame(0,lo,8,hi);h->SetName(n);h->GetXaxis()->SetTitle("Mass [GeV]");h->GetYaxis()->SetTitle(y);h->GetYaxis()->SetNdivisions(505);}
+void legend(TGraphErrors*a,TGraphErrors*b,double px,const char* second="reference"){auto l=new TLegend(.53,.65,.8,.8);l->SetBorderSize(0);l->SetFillStyle(0);l->SetTextFont(rootFont);l->SetTextSize(px*.85);l->AddEntry(a,"observed","lp");if(b)l->AddEntry(b,second,"lp");l->Draw();}
+void line(double y){auto l=new TLine(0,y,8,y);l->SetLineColor(kGray+1);l->SetLineStyle(2);l->Draw();}
+void gallery(){gROOT->SetBatch(kTRUE);auto v=csv("data/counts.csv"),z=csv("data/density.csv"),cor=csv("data/correlation.csv");auto names=tasteNames;auto cols=semanticColors;
+for(int t=0;t<3;t++)for(int s=0;s<2;s++){auto p=preset(s);rootFont=tasteFonts[t];style(s,t==1);int c[3];for(int i=0;i<3;i++)c[i]=TColor::GetColor(cols[t][i]);auto cv=new TCanvas(Form("c%d%d",t,s),"SYNTHETIC",p.width,p.height);cv->Divide(3,3,.012,.022);
+cv->cd(1);frame("counts","Counts / 0.2 GeV",0,210);auto a=graph(v,0,c[0],semanticMarkers[0],semanticLines[0]);a->Draw("LP SAME");legend(a,nullptr,p.fontPx);title("Counts / statistical errors",p.fontPx);
+cv->cd(2);gPad->SetLogy();frame("log","Counts / 0.2 GeV",.5,800);a=graph(v,1,c[0],semanticMarkers[0],semanticLines[0]);a->Draw("LP SAME");title("Log Y: zero bins skipped explicitly",p.fontPx);
+cv->cd(3);frame("overlay","Counts / 0.2 GeV",0,210);a=graph(v,0,c[0],semanticMarkers[0],semanticLines[0]);auto b=graph(v,2,c[1],semanticMarkers[1],semanticLines[1]);a->Draw("LP SAME");b->Draw("LP SAME");legend(a,b,p.fontPx);title("Same counts normalization",p.fontPx);
+cv->cd(4);frame("ratio","Ratio",0,5);graph(v,3,c[0],semanticMarkers[0],semanticLines[0])->Draw("LP SAME");line(1);title("Ratio: independent Poisson errors",p.fontPx);
+cv->cd(5);frame("subtraction","Counts / 0.2 GeV",-20,210);a=graph(v,4,c[0],semanticMarkers[0],semanticLines[0]);b=graph(v,5,c[2],semanticMarkers[2],semanticLines[2]);a->Draw("LP SAME");b->Draw("L SAME");line(0);legend(a,b,p.fontPx,"model");title("Background subtraction",p.fontPx);
+cv->cd(6);frame("residual","(data-model) / sqrt(model)",-3.5,3.5);graph(v,6,c[0],semanticMarkers[0],semanticLines[0])->Draw("LP SAME");line(0);title("Fit residual: fixed peak shape",p.fontPx);
+for(int panel=7;panel<=8;panel++){cv->cd(panel);auto h=new TH2D(Form("h%d%d%d",t,s,panel),"",24,-3.130434783,3.130434783,24,-3.130434783,3.130434783);int zeros=0;for(auto&r:z){auto bin=h->FindBin(r[0],r[1]);if(panel==7){if(r[2]==0)zeros++;h->SetBinContent(bin,r[2]);}else h->SetBinContent(bin,r[3]);}h->GetXaxis()->SetTitle("x [a.u.]");h->GetYaxis()->SetTitle("y [a.u.]");if(panel==7){gPad->SetLogz();h->SetMinimum(1);h->SetMaximum(60);}else{h->SetMinimum(-30);h->SetMaximum(30);}h->Draw("AXIS");palette(t,panel==8);h->Draw("COLZ SAME");h->Draw("AXIS SAME");title(panel==7?Form("Log density: %d zeros blank",zeros):"Signed difference: center = 0",p.fontPx);gPad->Update();}
+cv->cd(9);auto h=new TH2D(Form("cor%d%d",t,s),"",4,-.5,3.5,4,-.5,3.5);for(int i=0;i<4;i++)for(int j=0;j<4;j++)h->SetBinContent(j+1,i+1,cor[i][j]);h->SetMinimum(-1);h->SetMaximum(1);h->Draw("AXIS");palette(t,true);h->Draw("COLZ SAME");h->Draw("AXIS SAME");title("Correlation: scale -1 to 1",p.fontPx);gPad->Update();
+for(int i=0;i<4;i++)for(int j=0;j<4;j++){TLatex tx;tx.SetTextFont(rootFont);tx.SetTextSize(p.fontPx*.85);tx.SetTextAlign(22);tx.SetTextColor(fabs(cor[i][j])>.55?kWhite:kBlack);tx.DrawLatex(j,i,Form("%.2f",cor[i][j]));}
+cv->cd();TLatex label;label.SetNDC();label.SetTextFont(rootFont);label.SetTextSize(p.fontPx*.75);label.DrawLatex(.025,.99,Form("ROOT | %s | %s | SYNTHETIC | UF/OF=0 | stat only | #phi, -1, n#sigma",names[t],s?"slides":"paper"));cv->SaveAs(Form("output/root-%s-%s.png",names[t],s?"slides":"paper"));
+if(t==0){auto one=new TCanvas(Form("single%d",s),"SYNTHETIC",s?1000:340,s?700:280);frame("singleCounts","Counts / 0.2 GeV",0,210);auto sg=graph(v,0,c[0],semanticMarkers[0],semanticLines[0]);sg->Draw("LP SAME");legend(sg,nullptr,p.fontPx);title("SYNTHETIC | counts",p.fontPx);one->SaveAs(Form("output/root-single-%s.png",s?"slides":"paper"));one->SaveAs(Form("output/root-single-%s.pdf",s?"slides":"paper"));}
+if(t==0){auto extra=new TCanvas(Form("extra%d",s),"SYNTHETIC overlay + ratio",s?1000:680,s?760:520);auto up=new TPad("up","",0,.3,1,1);auto dn=new TPad("dn","",0,0,1,.3);up->Draw();dn->Draw();up->cd();frame("upper","Counts / 0.2 GeV",0,210);a=graph(v,0,c[0],semanticMarkers[0],semanticLines[0]);b=graph(v,2,c[1],semanticMarkers[1],semanticLines[1]);a->Draw("LP SAME");b->Draw("LP SAME");legend(a,b,p.fontPx);title("SYNTHETIC | overlay + ratio",p.fontPx);dn->cd();gPad->SetBottomMargin(.4);gStyle->SetTitleOffset(.9,"X");frame("lower","Ratio",0,5);graph(v,3,c[0],semanticMarkers[0],semanticLines[0])->Draw("LP SAME");line(1);extra->SaveAs(Form("output/root-overlay-ratio-%s.png",s?"slides":"paper"));extra->SaveAs(Form("output/root-overlay-ratio-%s.pdf",s?"slides":"paper"));}
+if(t==0 && s==0){auto sh=new TCanvas("shared","SYNTHETIC shared axes",680,310);sh->Divide(2,1);for(int j=0;j<2;j++){sh->cd(j+1);frame(Form("shared%d",j),"Counts / 0.2 GeV",0,210);graph(v,j?2:0,c[j],j?21:20,j?2:1)->Draw("LP SAME");title(j?"SYNTHETIC | reference":"SYNTHETIC | observed",p.fontPx);}sh->SaveAs("output/root-shared-axes-paper.png");auto lin=new TCanvas("linear","SYNTHETIC linear density",480,440);auto hlin=new TH2D("linearDensity","",24,-3.130434783,3.130434783,24,-3.130434783,3.130434783);for(auto&r:z)hlin->Fill(r[0],r[1],r[2]);hlin->GetXaxis()->SetTitle("x [a.u.]");hlin->GetYaxis()->SetTitle("y [a.u.]");hlin->SetMinimum(0);hlin->SetMaximum(60);hlin->Draw("AXIS");palette(0,false);hlin->Draw("COLZ SAME");hlin->Draw("AXIS SAME");title("SYNTHETIC | linear density (zeros included)",p.fontPx);lin->SaveAs("output/root-linear-density-paper.png");}
+}}

@@ -1,0 +1,13 @@
+name: Python plotting QA
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  selected-style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy matplotlib Pillow pypdf
+      - run: python python/selected_counts.py && python python/selected_density.py
+      - run: python qa/publication_checks.py

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "tastes": {
+    "classic": {
+      "colors": [
+        "#0072B2",
+        "#D55E00",
+        "#009E73"
+      ],
+      "sequential": "viridis",
+      "diverging": "RdBu_r",
+      "grid": false,
+      "font": "DejaVu Serif",
+      "root_font": 133
+    },
+    "clean": {
+      "colors": [
+        "#31688E",
+        "#B65C00",
+        "#6C3483"
+      ],
+      "sequential": "cividis",
+      "diverging": "PuOr",
+      "grid": true,
+      "font": "DejaVu Sans",
+      "root_font": 43
+    },
+    "ink": {
+      "colors": [
+        "#222222",
+        "#888888",
+        "#AA3377"
+      ],
+      "sequential": "magma",
+      "diverging": "BrBG",
+      "grid": false,
+      "font": "DejaVu Sans",
+      "root_font": 43
+    }
+  },
+  "presets": {
+    "paper": {
+      "font_pt": 10,
+      "gallery_inches": [
+        12,
+        10
+      ],
+      "single_inches": [
+        3.4,
+        2.8
+      ]
+    },
+    "slides": {
+      "font_pt": 15,
+      "gallery_inches": [
+        16,
+        13
+      ],
+      "single_inches": [
+        10,
+        7
+      ]
+    }
+  },
+  "conditions": {
+    "observed": {
+      "index": 0,
+      "marker": "o",
+      "line": "-"
+    },
+    "reference": {
+      "index": 1,
+      "marker": "s",
+      "line": "--"
+    },
+    "model": {
+      "index": 2,
+      "marker": "^",
+      "line": ":"
+    }
+  },
+  "geometry": {
+    "line_pt": 1.5,
+    "axis_pt": 1.0,
+    "grid_alpha": 0.18,
+    "root_margins": [
+      0.19,
+      0.18,
+      0.19,
+      0.18
+    ],
+    "root_title_offsets": [
+      1.8,
+      2.1
+    ],
+    "mpl_layout_rect": [
+      0,
+      0.04,
+      1,
+      0.95
+    ]
+  }
+}

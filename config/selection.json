@@ -1,0 +1,33 @@
+{
+  "layout": "classic",
+  "layout_status": "user_selected",
+  "semantic_color": "4",
+  "color_candidates": [
+    "1",
+    "4"
+  ],
+  "density_color": "viridis",
+  "density_candidates": [
+    "viridis",
+    "Blues",
+    "YlGnBu"
+  ],
+  "color_status": "user_selected",
+  "application_scope": "examples_only",
+  "density_status": "user_selected_from_attached_image",
+  "signed_difference": "RdBu_r",
+  "signed_center": 0,
+  "signed_status": "user_selected_from_attached_image",
+  "render_backend": "matplotlib",
+  "compute_backend": "task_dependent",
+  "root_exceptions": [
+    "Python plotting unavailable",
+    "ROOT integration better suited to calculation workflow"
+  ],
+  "presets": [
+    "paper",
+    "slides"
+  ],
+  "semantic_color_status": "user_selected",
+  "series_overflow_policy": "require_explicit_semantic_mapping_no_silent_color_cycle"
+}

@@ -1,0 +1,10 @@
+{
+  "method": "weighted linear least squares; fixed peak mean 3 and width .38",
+  "parameters": [
+    14.580516335970868,
+    3.730602419950491,
+    122.1267475750536
+  ],
+  "chi2": 38.016924585040485,
+  "ndof": 37
+}

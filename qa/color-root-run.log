@@ -1,0 +1,8 @@
+2026-10-02 00:54:37.849 root[66041:12906698] Connection Invalid error for service com.apple.hiservices-xpcservice.
+2026-10-02 00:54:37.849 root[66041:12906694] Error received in message reply handler: Connection invalid
+
+Processing root/color_compare.C...
+Info in <TCanvas::Print>: png file output/color-root-paper.png has been created
+Info in <TCanvas::Print>: pdf file output/color-root-paper.pdf has been created
+Info in <TCanvas::Print>: png file output/color-root-slides.png has been created
+Info in <TCanvas::Print>: pdf file output/color-root-slides.pdf has been created

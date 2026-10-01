@@ -1,0 +1,1 @@
+Four ROOT embedded vector PDFs: empty external font directory; exact pixel differences=0.

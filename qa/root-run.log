@@ -1,0 +1,20 @@
+2026-10-02 00:24:10.042 root[54867:12842339] Error received in message reply handler: Connection invalid
+2026-10-02 00:24:10.042 root[54867:12842344] Connection Invalid error for service com.apple.hiservices-xpcservice.
+
+Processing root/gallery.C...
+Info in <TCanvas::Print>: png file output/root-classic-paper.png has been created
+Info in <TCanvas::Print>: png file output/root-single-paper.png has been created
+Info in <TCanvas::Print>: pdf file output/root-single-paper.pdf has been created
+Info in <TCanvas::Print>: png file output/root-overlay-ratio-paper.png has been created
+Info in <TCanvas::Print>: pdf file output/root-overlay-ratio-paper.pdf has been created
+Info in <TCanvas::Print>: png file output/root-shared-axes-paper.png has been created
+Info in <TCanvas::Print>: png file output/root-linear-density-paper.png has been created
+Info in <TCanvas::Print>: png file output/root-classic-slides.png has been created
+Info in <TCanvas::Print>: png file output/root-single-slides.png has been created
+Info in <TCanvas::Print>: pdf file output/root-single-slides.pdf has been created
+Info in <TCanvas::Print>: png file output/root-overlay-ratio-slides.png has been created
+Info in <TCanvas::Print>: pdf file output/root-overlay-ratio-slides.pdf has been created
+Info in <TCanvas::Print>: png file output/root-clean-paper.png has been created
+Info in <TCanvas::Print>: png file output/root-clean-slides.png has been created
+Info in <TCanvas::Print>: png file output/root-ink-paper.png has been created
+Info in <TCanvas::Print>: png file output/root-ink-slides.png has been created

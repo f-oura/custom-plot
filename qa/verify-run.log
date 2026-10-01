@@ -1,0 +1,26 @@
+{
+  "numerical_checks": "pass",
+  "backend_galleries": 12,
+  "embedding_ToUnicode_pass": [
+    "comparison.pdf",
+    "mpl-classic-paper.pdf",
+    "mpl-classic-slides.pdf",
+    "mpl-clean-paper.pdf",
+    "mpl-clean-slides.pdf",
+    "mpl-ink-paper.pdf",
+    "mpl-ink-slides.pdf",
+    "mpl-single-paper.pdf",
+    "mpl-single-slides.pdf",
+    "overlay-ratio-paper.pdf"
+  ],
+  "raw_ROOT_PDF_embedding": "FAIL: unembedded Type1 fonts; excluded from publication acceptance",
+  "raw_ROOT_PDF_files": [
+    "root-overlay-ratio-paper.pdf",
+    "root-overlay-ratio-slides.pdf",
+    "root-single-paper.pdf",
+    "root-single-slides.pdf"
+  ],
+  "zero_density_bins": 261,
+  "ratio_max_with_error": 3.0390470785361217,
+  "visual_QA": "See REPORT.md; not automated pass"
+}
