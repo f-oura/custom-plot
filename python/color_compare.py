@@ -39,11 +39,11 @@ def draw_counts(fig, spec, candidate, counts, preset):
     ratio = fig.add_subplot(pair[1], sharex=top)
     colors = OPTIONS["candidates"][candidate]["conditions"]
     top.errorbar(x, observed, yerr=np.sqrt(observed), color=colors["observed"],
-                 marker="o", ms=3 if preset == "paper" else 4.2, lw=1.3,
+                 marker="o", ls="none", ms=4 if preset == "paper" else 5.5, lw=1.3,
                  capsize=1.4, label="Observed (stat. $\\sqrt{N}$)", zorder=3)
     top.errorbar(x, reference, yerr=np.sqrt(reference), color=colors["reference"],
-                 marker="s", ms=2.8 if preset == "paper" else 4.0, lw=1.15,
-                 ls="--", capsize=1.3, label="Reference (stat. $\\sqrt{N}$)", zorder=2)
+                 marker="s", ms=4 if preset == "paper" else 5.5, lw=1.15,
+                 ls="none", capsize=1.3, label="Reference (stat. $\\sqrt{N}$)", zorder=2)
     top.plot(x, model, color=colors["model"], lw=1.8, ls=":",
              label="Fixed-shape fit", zorder=1)
     top.set(xlim=(0, 8), ylim=(0, 210), ylabel="Counts / 0.2 GeV")
@@ -54,10 +54,10 @@ def draw_counts(fig, spec, candidate, counts, preset):
     valid = reference > 0
     q = observed[valid] / reference[valid]
     qerr = q * np.sqrt(1 / np.maximum(observed[valid], 1) + 1 / reference[valid])
-    ratio.errorbar(x[valid], q, yerr=qerr, color=colors["observed"], marker="o",
-                   ms=2.6 if preset == "paper" else 3.8, lw=1.05, capsize=1.2)
+    ratio.errorbar(x[valid], q, yerr=qerr, color=colors["observed"], marker="o", ls="none",
+                   ms=4 if preset == "paper" else 5.5, lw=1.05, capsize=1.2)
     ratio.axhline(1, color="#666666", lw=.85, ls="--")
-    ratio.set(xlim=(0, 8), ylim=(0, 5), xlabel="Mass [GeV]", ylabel="O / R")
+    ratio.set(xlim=(0, 8), ylim=(0, 5), xlabel="Mass [GeV]", ylabel="Observed / reference")
     axes_style(ratio)
     ratio.yaxis.set_label_coords(-.105, .5)
     return top, ratio

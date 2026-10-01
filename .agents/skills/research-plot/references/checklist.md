@@ -1,8 +1,15 @@
 # Research plot QA checklist
 
+## Purpose, reader and evidence
+
+- [ ] State in one sentence what the reader should learn and which comparison supports it; remove panels that do not serve that purpose.
+- [ ] Explain only the terms needed by a first-time reader: abbreviations, variables, normalization and comparison roles. Avoid unexplained internal labels and unnecessary definitions.
+- [ ] Check event counts/effective statistics, uncertainties and correlations against the precision needed for the claimed conclusion. Sparse or inconclusive plots do not support a trend/ranking claim; mark them exploratory, withhold the conclusion or omit them from the argument.
+- [ ] Draw statistical data, ratios and residuals as points with appropriate error bars, without connecting data points. Keep model/theory curves and reference lines distinct.
+
 ## Scientific meaning
 
-- [ ] Series colors come from explicit semantic mapping, never incidental input order; markers and line styles also distinguish conditions.
+- [ ] Series colors come from explicit semantic mapping, never incidental input order; marker shapes also distinguish data conditions; line styles distinguish model curves and reference lines.
 - [ ] Legend entries correspond exactly to curves and uncertainties shown.
 - [ ] Units, normalization, bin width, and range match across panels being compared.
 - [ ] Statistical and systematic uncertainty are named and shown distinctly; assumptions and correlations are stated.
@@ -11,6 +18,10 @@
 - [ ] Signed differences use a diverging scale centered at zero; comparable maps share limits and units.
 
 ## Visual rendering
+
+- [ ] At final print width or projection size, titles, axes, ticks, legends, data markers and error bars can be read by viewers who struggle with small text, including those at the back of the room. Do not use zoomed inspection or font-size numbers alone as proof. Mobile-screen readability is not a requirement.
+- [ ] Keep the layout uncrowded; enlarge text/markers, shorten explanations, enlarge the figure or split panels when needed.
+- [ ] Purpose, reader comprehension and statistical support pass review before calling the figure/material complete. Font embedding and overlap checks alone are insufficient.
 
 - [ ] Render and inspect every page/panel in the actual PNG/PDF output at its intended physical size; text extraction or numeric checks do not count as pixel inspection.
 - [ ] Legend text does not cover a peak, data points, or important uncertainty.

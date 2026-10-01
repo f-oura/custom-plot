@@ -54,16 +54,16 @@ void color_compare() {
       frame(Form("overlay%d%d",slides,option),"Counts / 0.2 GeV",0,210);
       auto frameHist=(TH1*)up->GetPrimitive(Form("overlay%d%d",slides,option));frameHist->GetXaxis()->SetTitle("");frameHist->GetXaxis()->SetLabelSize(0);
       auto a=graph(counts,0,colors[0],20,1),b=graph(counts,2,colors[1],21,2);
-      a->Draw("LP SAME");b->Draw("LP SAME");
+      a->Draw("P SAME");b->Draw("P SAME");
       auto fit=new TGraph();for(size_t j=0;j<counts.size();j++)fit->SetPoint(j,counts[j][0],counts[j][4]);
       fit->SetLineColor(colors[2]);fit->SetLineStyle(3);fit->SetLineWidth(2);fit->Draw("L SAME");
       auto leg=new TLegend(.69,.58,.95,.82);leg->SetTextFont(rootFont);leg->SetTextSize(p.fontPx*.8);leg->SetBorderSize(0);leg->SetFillStyle(0);
-      leg->AddEntry(a,"observed","lp");leg->AddEntry(b,"reference","lp");leg->AddEntry(fit,"fit model","l");leg->Draw();
+      leg->AddEntry(a,"observed","pe");leg->AddEntry(b,"reference","pe");leg->AddEntry(fit,"fit model","l");leg->Draw();
       title(option==0?"Option 1: blue / orange / teal":"Option 4: black / blue / vermilion",p.fontPx);
       cv->cd();auto dn=panel(Form("ratio%d%d",slides,option),.5*option,.515,.5*(option+1),.67);
       dn->SetLeftMargin(.14);dn->SetRightMargin(.04);dn->SetTopMargin(.05);dn->SetBottomMargin(.3);
       gStyle->SetTitleOffset(.8,"X");frame(Form("ratframe%d%d",slides,option),"Ratio",0,5);
-      graph(counts,3,colors[0],20,1)->Draw("LP SAME");line(1);gStyle->SetTitleOffset(offsets[0],"X");
+      graph(counts,3,colors[0],20,1)->Draw("P SAME");line(1);gStyle->SetTitleOffset(offsets[0],"X");
     }
     const double (*luts[3])[3]={cmap_viridis,cmap_Blues,cmap_YlGnBu};const char* palettes[3]={"1: viridis","4: Blues","4: YlGnBu"};
     for(int row=0;row<2;row++)for(int col=0;col<4;col++){

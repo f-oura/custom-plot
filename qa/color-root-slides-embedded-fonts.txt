@@ -1,0 +1,4 @@
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+CNZCAI+Symbol                        Type 1C           Custom           yes yes yes      5  0
+WVGSFS+Times-Roman                   Type 1C           WinAnsi          yes yes yes      9  0

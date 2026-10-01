@@ -1,0 +1,10 @@
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+DEQPTC+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes      7  0
+GGGFFG+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     14  0
+FWKNXQ+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     37  0
+GWGVSD+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     44  0
+DEQPTC+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     62  0
+GGGFFG+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     69  0
+CYNASY+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     91  0
+GWGVSD+DejaVuSerif                   CID TrueType      Identity-H       yes yes yes     98  0

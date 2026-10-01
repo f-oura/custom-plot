@@ -6,7 +6,7 @@ ROOT原PDFはそのまま保持。`root/embed_vector_pdf.py` はGS pdfwriteで�
 
 ROOT原PDFはA4ページ・CropBox・Rotateを使うため、実寸比較に適したpage boxへ正規化。canvasの縦横比を保ち、残りは余白とする。single paper3.4×2.8inch、slides10×7inch、overlay paper6.8×5.2inch、slides10×7.6inch。style候補やdataを変更しない。
 
-初版4つ＋追加比較2つの `*-embedded.pdf` を生成してpdffontsでembedded/subset/Unicodeの全てyesを確認。ベクトルのstroke297/765、text operation10/20、Imageオブジェクト0。pathとtextを保持し、全raster化していない。対象語SYNTHETIC、Mass [GeV]、observed、reference、Ratioも実textとして抽出可能。4つのPDFをPopplerで実renderして全panelを目視し、peakとlegendの重なり、tickとlabelの重なり、clipがないことを確認。外部fontが空のFontconfig設定でも4図をrenderし、通常renderとのpixel差分0。
+初版4つ＋追加比較2つの `*-embedded.pdf` を生成してpdffontsでembedded/subset/Unicodeの全てyesを確認。ベクトルのpath strokeとtext operationを確認、Imageオブジェクト0。現在の件数はqa/vector/results.jsonを参照。pathとtextを保持し、全raster化していない。対象語SYNTHETIC、Mass [GeV]、observed、reference、Ratioも実textとして抽出可能。4つのPDFをPopplerで実renderして全panelを目視し、peakとlegendの重なり、tickとlabelの重なり、clipがないことを確認。外部fontが空のFontconfig設定でも4図をrenderし、通常renderとのpixel差分0。
 
 実寸で抽出した横書きfontはsingle paperのtick8.01pt、axis/title9.47pt、slidesのtick12.29pt、axis/title13.73pt。ROOT font43/133のpixel指定とPDF canvas/crop変換の結果であり、Matplotlibの10/15ptと同一ではない。見本の実pixelも確認したが、投影距離・印刷機での最終読めるサイズはユーザー確認待ち。
 
@@ -20,4 +20,4 @@ python3 root/embed_vector_pdf.py --gs /path/to/gs --resource /path/to/matching/r
 
 pypdf6.10.0を使用。`--gs`、`--resource`、`--libtiff` で確認済み別環境を指定可能。この救済経路は今のMac用で、任意の新環境へそのまま動くと主張しない。raw ROOT PDFは未埋込のままなので、提出候補はembedded版を使う。
 
-追加color比較2図もtext operation219、vector stroke6919、画像0で埋込成功。最終合本4＋4ページを外部font空で実renderしpixel差0。詳細はqa/COLOR_REPORT.md。
+追加color比較2図もtext/path保持、画像0で埋込成功。最終合本4＋4ページを外部font空で実renderしpixel差0。詳細はqa/COLOR_REPORT.md。

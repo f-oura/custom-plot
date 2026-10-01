@@ -9,10 +9,17 @@ def apply(taste,preset):
     return C['tastes'][taste],C['presets'][preset]
 
 def semantic(ax,x,y,key,t,errors=None):
+    """Draw statistical series as points; only the model is a curve."""
     s=C['conditions'][key]
     color=t['colors'][s['index']]
-    if errors is None: ax.plot(x,y,label=key,color=color,ls=s['line'],lw=C['geometry']['line_pt'])
-    else: ax.errorbar(x,y,yerr=errors,label=key,color=color,fmt=s['marker'],ms=3,ls=s['line'],lw=C['geometry']['line_pt'],capsize=1.5)
+    marker_size=max(4.,plt.rcParams['font.size']*.35)
+    if errors is None and key=='model':
+        ax.plot(x,y,label=key,color=color,ls=s['line'],lw=C['geometry']['line_pt'])
+    elif errors is None:
+        ax.plot(x,y,label=key,color=color,marker=s['marker'],ms=marker_size,ls='none')
+    else:
+        ax.errorbar(x,y,yerr=errors,label=key,color=color,fmt=s['marker'],ms=marker_size,
+                    ls='none',elinewidth=C['geometry']['line_pt'],capsize=2)
 
 def outside_legend(ax):
     # Reserved headroom; actual data-specific checks still required.

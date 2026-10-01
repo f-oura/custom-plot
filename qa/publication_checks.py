@@ -8,6 +8,18 @@ from plotstyle import apply_selected,semantic,S
 assert S['render_backend']=='matplotlib' and S['semantic_color']=='4'
 assert S['density_color']=='viridis' and S['signed_difference']=='RdBu_r'
 assert apply_selected()[0]['colors']==['#222222','#0072B2','#D55E00']
+# Inspect artists: statistical data remain disconnected even without errors;
+# the model remains a curve. This verifies rendered intent, not text patterns.
+import matplotlib.pyplot as plt
+fig,ax=plt.subplots()
+style,_=apply_selected()
+semantic(ax,[1,2],[2,3],'observed',style,errors=[.2,.3])
+assert ax.lines[0].get_linestyle()=='None'
+semantic(ax,[1,2],[2,3],'reference',style)
+assert ax.lines[-1].get_linestyle()=='None'
+semantic(ax,[1,2],[2,3],'model',style)
+assert ax.lines[-1].get_linestyle()!='None'
+plt.close(fig)
 try: semantic(None,[],[],'unmapped-fourth-condition',apply_selected()[0])
 except KeyError: pass
 else: raise AssertionError('Unknown condition silently accepted')

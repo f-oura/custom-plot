@@ -1,5 +1,5 @@
-2026-10-02 00:24:10.042 root[54867:12842339] Error received in message reply handler: Connection invalid
-2026-10-02 00:24:10.042 root[54867:12842344] Connection Invalid error for service com.apple.hiservices-xpcservice.
+2026-10-02 03:11:33.135 root[24787:13188616] Error received in message reply handler: Connection invalid
+2026-10-02 03:11:33.135 root[24787:13188621] Connection Invalid error for service com.apple.hiservices-xpcservice.
 
 Processing root/gallery.C...
 Info in <TCanvas::Print>: png file output/root-classic-paper.png has been created

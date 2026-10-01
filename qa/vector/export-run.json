@@ -7,7 +7,7 @@
     ],
     "scale": 0.4317460317460317,
     "fonts": "embedded/subset/ToUnicode yes",
-    "path_strokes": 297,
+    "path_strokes": 299,
     "text_runs": 10,
     "images": 0
   },
@@ -19,7 +19,7 @@
     ],
     "scale": 1.2698412698412698,
     "fonts": "embedded/subset/ToUnicode yes",
-    "path_strokes": 297,
+    "path_strokes": 299,
     "text_runs": 10,
     "images": 0
   },
@@ -31,7 +31,7 @@
     ],
     "scale": 0.8634920634920634,
     "fonts": "embedded/subset/ToUnicode yes",
-    "path_strokes": 765,
+    "path_strokes": 768,
     "text_runs": 20,
     "images": 0
   },
@@ -43,7 +43,7 @@
     ],
     "scale": 1.2698412698412698,
     "fonts": "embedded/subset/ToUnicode yes",
-    "path_strokes": 765,
+    "path_strokes": 768,
     "text_runs": 20,
     "images": 0
   },
@@ -55,7 +55,7 @@
     ],
     "scale": 1.5238095238095237,
     "fonts": "embedded/subset/ToUnicode yes",
-    "path_strokes": 6919,
+    "path_strokes": 6925,
     "text_runs": 219,
     "images": 0
   },
@@ -67,7 +67,7 @@
     ],
     "scale": 2.0303687635574836,
     "fonts": "embedded/subset/ToUnicode yes",
-    "path_strokes": 6919,
+    "path_strokes": 6925,
     "text_runs": 219,
     "images": 0
   }
